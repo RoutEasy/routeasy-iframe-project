@@ -1,0 +1,7 @@
+.table-horizontal {
+    overflow-y: hidden; 
+    overflow-x: scroll;
+}
+.table {
+    width: 3000px;
+}

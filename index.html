@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="RouteasyIframe">
+    <head>
+        <title>Routeasy iFrame example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--JavaScript Lib-->
+        <script src="/lib/angular/angular.min.js"></script>
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/angular-resource/angular-resource.min.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/lib/angular-cookies/angular-cookies.min.js"></script>
+
+        <!--CSS Lib-->
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" charset="utf-8" />
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css" charset="utf-8" />
+
+        <!--CSS Custom-->
+        <link rel="stylesheet" href="/css/style.css" charset="utf-8" />
+
+        <!-- JavaScript Custom -->
+        <script src="/modules/app.js"></script>
+        <script src="/modules/routeasy/config/routeasy.client.config.js"></script>
+        <script src="/modules/routeasy/service/routeasy.auth.client.service.js"></script>
+        <script src="/modules/routeasy/service/routeasy.deliveries.client.service.js"></script>
+        <script src="/modules/routeasy/service/routeasy.sample.client.service.js"></script>
+        <script src="/modules/routeasy/service/routeasy.deliveries.utils.service.js"></script>
+        <script src="/modules/routeasy/controller/routeasy.client.controller.js"></script>
+    </head>
+        <div data-ng-include="'/modules/routeasy/views/header.client.view.html'"></div>       
+    <body>
+        <div data-ng-include="'/modules/routeasy/views/home.client.view.html'"></div>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+[
+        {
+            "code": "C-001",
+            "name": "Customer 01",
+            "address": {
+                "postal_code": "09551-000",
+                "city": "São Caetano do Sul",
+                "state": "São Paulo",
+                "neighborhood": "Barcelona",
+                "route": "Rua Flórida",
+                "country": "Brasil",
+                "street_number": "1379",
+                "additional_info": "Casa B"                
+            },
+            "weight": 1,
+            "volume": 0,
+            "service_time": 20,
+            "email": "customer01@customer01.com.br",
+            "phone": "11 99999-0000",
+            "invoice_number": "546114656",
+            "order_number": "04155421",
+            "additional_info_1": "Delivery at neighbor",
+            "additional_info_2": "Do not deliver invoice. Owner: Calton Bancks",
+            "constraints": {
+                "window_daily": {
+                    "start_time": "1970-01-01T05:00:00.000Z",
+                    "end_time": "1970-01-01T12:00:00.000Z"
+                }    
+            }
+        },
+        {
+            "code": "C-002",
+            "name": "Customer 02",
+            "address": {
+                "postal_code": "01310-100",
+                "city": "São Paulo",
+                "state": "São Paulo",
+                "neighborhood": "Bela Vista",
+                "route": "Avenida Paulista",
+                "country": "Brasil",
+                "street_number": "1500",
+                "additional_info": "Ap. 22 Bl 01"                
+            },
+            "weight": 1,
+            "volume": 0,
+            "service_time": 10,
+            "email": "customer02@customer02.com.br",
+            "phone": "11 97777-0000",
+            "invoice_number": "7945804",
+            "order_number": "449584",
+            "additional_info_1": "Delivery to the doorman",
+            "additional_info_2": "Pending payment. Ref. 5584845",
+            "constraints": {
+                "window_daily": {
+                    "start_time": "1970-01-01T08:00:00.000Z",
+                    "end_time": "1970-01-01T17:00:00.000Z"
+                }    
+            }
+        },
+        {
+            "code": "C-003",
+            "name": "Customer 03",
+            "address": {
+                "postal_code": "22640-100",
+                "city": "Rio de Janeiro",
+                "state": "Rio de Janeiro",
+                "neighborhood": "Barra da Tijuca",
+                "route": "Avenida das Américas",
+                "country": "Brasil",
+                "street_number": "1230",
+                "additional_info": ""                
+            },
+            "weight": 1,
+            "volume": 0,
+            "service_time": 20,
+            "email": "customer02@customer02.com.br",
+            "phone": "21 2562-0000",
+            "invoice_number": "9876553",
+            "order_number": "04155421",
+            "additional_info_1": "Caution! Fragile product",
+            "additional_info_2": "",
+            "constraints": {
+                "window_daily": {
+                    "start_time": "1970-01-01T07:00:00.000Z",
+                    "end_time": "1970-01-01T15:00:00.000Z"
+                }    
+            }
+        },
+        {
+            "code": "C-004",
+            "name": "Customer 04",
+            "address": {
+                "postal_code": "",
+                "city": "Niterói",
+                "state": "Rio de Janeiro",
+                "neighborhood": "Fonseca",
+                "route": "Alameda São Boaventura",
+                "country": "Brasil",
+                "street_number": "265",
+                "additional_info": ""                
+            },
+            "weight": 1,
+            "volume": 0,
+            "service_time": 20,
+            "email": "customer04@customer04.com.br",
+            "phone": "21 2323-0000",
+            "invoice_number": "7777777",
+            "order_number": "5655565",
+            "additional_info_1": "",
+            "additional_info_2": "",
+            "constraints": {
+                "window_daily": {
+                    "start_time": "1970-01-01T10:00:00.000Z",
+                    "end_time": "1970-01-01T23:00:00.000Z"
+                }    
+            }
+        }
+]

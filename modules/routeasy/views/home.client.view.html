@@ -1,0 +1,107 @@
+<section data-ng-controller="RouteasyController">
+            <div class="container">
+                <!--Step1-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Step 1</b> <br /><small>Login</small></div>
+                    <div class="panel-body">
+                        <h3> Authentication </h3>
+                        <form data-ng-submit="authentication()">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="email" class="form-control" id="username" placeholder="Email" data-ng-model="user.username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password" data-ng-model="user.password">
+                            </div>
+                            <button type="submit" class="btn btn-default">Login</button>                   
+                        </form>
+                        <br />
+                        <div class="alert alert-success" role="alert" data-ng-if="loginStatus.success"><b>You successfully logged in!</b></div>
+                        <div class="alert alert-danger" role="alert" data-ng-if="loginStatus.error"><b>There was a problem with request</b> <br />{{loginStatus.errorMessage}}</div>           
+                    </div>
+                </div> 
+
+                <!--Step2-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Step 2</b> <br /><small>Send Deliveries</small></div>
+                    <div class="panel-body">   
+                        <h3> Deliveries <small><a href="javascript:;" data-ng-hide="showTable" data-ng-click="showTable = true">see deliveries </a></small></h3>
+                        <div class="table-horizontal" data-ng-show="showTable">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Code</th>
+                                        <th style="width: 7%">Name</th>
+                                        <th style="width: 17%">Address</th>
+                                        <th>Weight</th>
+                                        <th>Volume</th>
+                                        <th>Service time</th>
+                                        <th>Window Daily</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Invoice Number</th>
+                                        <th>Order Number</th>
+                                        <th>Additional Info 1</th>
+                                        <th>Additional Info 1</th>                                
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="delivery in deliveries">
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ delivery.code }}</td>
+                                        <td>{{ delivery.name }}</td>
+                                        <td>{{ stringAddress(delivery.address) }}</td>
+                                        <td>{{ delivery.weight }}</td>
+                                        <td>{{ delivery.volume }}</td>
+                                        <td>{{ delivery.service_time }}</td>
+                                        <td>{{ formatWindowDaily(delivery.constraints.window_daily) }}</td>
+                                        <td>{{ delivery.email }}</td>
+                                        <td>{{ delivery.phone }}</td>
+                                        <td>{{ delivery.invoice_number }}</td>
+                                        <td>{{ delivery.order_number }}</td>
+                                        <td>{{ delivery.additional_info_1 }}</td>
+                                        <td>{{ delivery.additional_info_2 }}</td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-default" data-ng-click="sendDeliveries()">Send Deliveries</button>
+                        <br /><br />
+                        <div class="alert alert-success" role="alert" data-ng-if="deliveryStatus.success"><b>Deliveries successfully submitted</b></div>  
+                        <div class="alert alert-danger" role="alert" data-ng-if="deliveryStatus.error"><b>There was a problem with request</b><br /> {{ deliveryStatus.errorMessage }}</div>
+
+                    </div>
+                </div> 
+
+                <!--Step3-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Step 3</b> <br /><small>Token with iFrame</small></div>
+                    <div class="panel-body">
+                        <h3> Link </h3>
+                        <div class="form-group">
+                            <div class="input-group"> 
+                                <span class="input-group-addon" id="sizing-addon3">URL</span>
+                                <input type="text" name="" id="link" class="form-control" data-ng-model="iframeURL" required disabled/> 
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-default" data-ng-disabled="!iframeURL" data-ng-click="showIframe = true">Send iFrame</button>
+                        <br /><br />
+                        <div class="alert alert-success" role="alert" data-ng-show="showIframe">iFrame created</div> 
+                    </div>
+                </div>
+            
+                <!--Step4-->
+                <div class="panel panel-default" data-ng-if="showIframe">
+                    <div class="panel-heading"><b>Step 4</b> <br /><small>iFrame with Deliveries</small></div>
+                    <div class="panel-body">
+                        <h3> Iframe </h3>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" data-ng-src="{{iframeURL}}" data-ng-if="showIframe"></iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>       
