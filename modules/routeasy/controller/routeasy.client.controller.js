@@ -2,9 +2,9 @@
 'use strict';
 
     angular.module('RouteasyIframe').controller('RouteasyController', RouteasyController);
-    RouteasyController.inject = ['$scope', '$sce', 'RouteasyAPIAuth', 'RouteasyAPIDelivery', 'RouteasySample', 'DeliveriesUtils', 'appConfig'];
+    RouteasyController.inject = ['$scope', '$sce', 'RouteasyAPIAuth', 'RouteasyAPIDelivery', 'Routings', 'RouteasySample', 'DeliveriesUtils', 'appConfig'];
 
-    function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, RouteasySample, DeliveriesUtils, appConfig) {
+    function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, Routings, RouteasySample, DeliveriesUtils, appConfig) {
 
 
         $scope.deliveries = RouteasySample.listDeliveries();
@@ -37,6 +37,7 @@
             RouteasyAPIDelivery.create($scope.deliveries, function(response) {
                 $scope.deliveryStatus.success = true;
                 $scope.deliveryStatus.error = false;
+                $scope.token = response.token;
                 $scope.iframeURL = appConfig.url() + appConfig.urlIframe();
                 $scope.iframeURL = $scope.iframeURL.replace('{{TOKEN}}', response.token);
                 $scope.iframeURL = $sce.trustAsResourceUrl($scope.iframeURL);
@@ -54,6 +55,15 @@
 
         $scope.formatWindowDaily = function(window_daily) {
             return DeliveriesUtils.formatWindowDaily(window_daily);
+        };
+
+        $scope.getRoutingByGroup = function() {
+            var group = { token: $scope.token };
+            Routings.getByGroup(group, function(response){
+                $scope.stringRouting = JSON.stringify(response);
+            }, function(err) {
+                console.log('failed');
+            });
         };
     }
 })();
