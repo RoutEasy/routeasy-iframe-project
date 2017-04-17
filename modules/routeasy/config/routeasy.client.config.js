@@ -3,7 +3,7 @@
     angular
         .module('RouteasyIframe')
         .constant('appConfig', {
-            url: function() { return 'http://localhost:3000/'; },
+            url: function() { return 'http://homolog-app.routeasy.com.br/'; },
             urlIframe: function() { return '#!/routings/create/1?token={{TOKEN}}'; }            
         });
 
