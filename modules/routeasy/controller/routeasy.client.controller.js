@@ -2,9 +2,9 @@
 'use strict';
 
     angular.module('RouteasyIframe').controller('RouteasyController', RouteasyController);
-    RouteasyController.inject = ['$scope', '$sce', 'RouteasyAPIAuth', 'RouteasyAPIDelivery', 'Routings', 'RouteasySample', 'DeliveriesUtils', 'appConfig'];
+    RouteasyController.inject = ['$scope', '$sce', 'RouteasyAPIAuth', 'RouteasyAPIDelivery', 'Routings', 'RouteasySample', 'DeliveriesUtils', 'appConfig', 'StarredVersion', 'Versions'];
 
-    function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, Routings, RouteasySample, DeliveriesUtils, appConfig) {
+    function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, Routings, RouteasySample, DeliveriesUtils, appConfig, StarredVersion, Versions) {
 
 
         $scope.deliveries = RouteasySample.listDeliveries();
@@ -15,6 +15,11 @@
             success: false,
             errorMessage: ''
         };
+        $scope.size = 200;
+        $scope.progress = 0.75;
+        $scope.strokeWidth = 5;
+        $scope.stroke = '#2ecc71';
+        $scope.counterClockwise = '';
 
         $scope.authentication = function() {
             RouteasyAPIAuth.login($scope.user, function(response) {                
@@ -59,11 +64,29 @@
 
         $scope.getRoutingByGroup = function() {
             var group = { token: $scope.token };
-            Routings.getByGroup(group, function(response){
-                $scope.stringRouting = JSON.stringify(response);
+            Routings.getByGroup(group, function(response){                
+                $scope.data = { 'routing': JSON.parse(angular.toJson(response)) };    
             }, function(err) {
                 console.log('failed');
             });
         };
+
+        $scope.getStarredVersion = function() {
+            var routing = new StarredVersion($scope.data.routing);
+            routing.$getStarredVersion(function(response) {
+                 $scope.data.version = JSON.parse(angular.toJson(response));
+            }, function(err) {
+                console.log('failed');
+            })
+        };
+
+        $scope.getVersion = function() {
+            var version = new Versions($scope.data.version);
+            version.$getVersion(function (response) {
+                $scope.data.version = JSON.parse(angular.toJson(response));
+            }, function(err) {
+                console.log('failed');
+            })
+        }
     }
 })();

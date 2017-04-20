@@ -5,3 +5,22 @@
 .table {
     width: 3000px;
 }
+.progress-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+progress-arc {
+  position: relative;
+}
+.progress-text {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  margin-top: 85px;
+  font-size: 24px;
+}
+.progress-bar-section {
+    text-align: center;
+    width: 23%;
+}

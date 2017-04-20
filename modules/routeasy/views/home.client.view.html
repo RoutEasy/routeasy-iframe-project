@@ -99,7 +99,7 @@
                     <div class="panel-body">
                         <h3> Iframe </h3>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" data-ng-src="{{iframeURL}}" data-ng-if="showIframe"></iframe>
+                        <iframe class="embed-responsive-item" data-ng-src="{{iframeURL}}"></iframe>
                     </div>
                     </div>
                 </div>
@@ -108,11 +108,48 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Step 5</b> <br /><small>Get Routing from Token</small></div>
                     <div class="panel-body">
-                        <h3> Routing Object </h3>
-                        <code data-ng-bind="stringRouting"></code>
+                        <h3> Routing Object </h3>                            
+                            <json-formatter json="data.routing" open="1" data-ng-show="data.routing"></json-formatter>
                         <br />
                         <button type="button" class="btn btn-default" data-ng-click="getRoutingByGroup()">Get routing</button>                   
                     </div>
                 </div>
+                <!--Step6-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Step 5</b> <br /><small>Get Starred Version</small></div>
+                    <div class="panel-body">
+                        <h3> Version Object </h3>                            
+                            <json-formatter json="data.version" open="1" data-ng-show="data.version"></json-formatter>
+                        <br />
+                        <button type="button" class="btn btn-default" data-ng-click="getStarredVersion()">Get Version</button>                   
+                    </div>
+                </div>
+                <!--Step7-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Step 5</b> <br /><small>Get Version Status</small></div>
+                    <div class="panel-body">
+                        <h3> Version Status </h3>                           
+                          
+                        <br />
+                        <div class="alert alert-success" data-ng-if="data.version.state.completion === 100" role="alert"><b>Completed!</b></div> 
+                        <div class="alert alert-danger" data-ng-if="data.version.state.completion === -1"role="alert"><b>Failed!</b></div> 
+                        <div class="progress-bar-section">
+                            <div class="progress-wrapper" data-ng-if="data.version.state.completion">
+                                <progress-arc
+                                    size="{{ size }}"
+                                    stroke="{{ stroke }}"
+                                    stroke-width="{{ strokeWidth }}"
+                                    complete="data.version.state.completion / 100"
+                                    background="{{ background }}"
+                                    counter-clockwise="{{ counterClockwise }}">
+                                </progress-arc>
+                                <p class="progress-text">{{data.version.state.completion | number:0}}%</p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-default" data-ng-click="getVersion()">Update Status</button>                   
+                    </div>
+                </div>
+
+
             </div>
         </section>       

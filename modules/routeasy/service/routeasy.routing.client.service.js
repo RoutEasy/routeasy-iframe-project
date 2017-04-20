@@ -7,7 +7,11 @@
 
     function RouteasyAPIDelivery($resource, appConfig) {
         
-        return $resource('',{ },
+        return $resource('', { 
+
+            'versionId': '@_id',
+            'routingId': '@_id'
+        },
         {   
             getByGroup: {
                 method: 'POST',
@@ -15,6 +19,14 @@
                 params: {
                     token: '@token'
                 }
+            },
+            getStarredVersion: {
+                method: 'GET',
+                url: appConfig.url() + 'routings/:routingId/versions/starred'                
+            },
+            getVersion: {
+                method: 'GET',
+                url: appConfig.url() + '/versions/:versionId'                
             }
         });
     }
