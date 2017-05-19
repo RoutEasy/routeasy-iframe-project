@@ -8,7 +8,7 @@
                         <form data-ng-submit="authentication()">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="email" class="form-control" id="username" placeholder="Email" data-ng-model="user.username">
+                                <input type="text" class="form-control" id="username" placeholder="Email" data-ng-model="user.username">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
@@ -108,15 +108,16 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Step 5</b> <br /><small>Get Routing from Token</small></div>
                     <div class="panel-body">
-                        <h3> Routing Object </h3>                            
+                        <h3> Routing Object </h3>
                             <json-formatter json="data.routing" open="1" data-ng-show="data.routing"></json-formatter>
                         <br />
                         <button type="button" class="btn btn-default" data-ng-click="getRoutingByGroup()">Get routing</button>                   
                     </div>
                 </div>
+
                 <!--Step6-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 5</b> <br /><small>Get Starred Version</small></div>
+                    <div class="panel-heading"><b>Step 6</b> <br /><small>Get Starred Version</small></div>
                     <div class="panel-body">
                         <h3> Version Object </h3>                            
                             <json-formatter json="data.version" open="1" data-ng-show="data.version"></json-formatter>
@@ -124,11 +125,12 @@
                         <button type="button" class="btn btn-default" data-ng-click="getStarredVersion()">Get Version</button>                   
                     </div>
                 </div>
+                
                 <!--Step7-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 5</b> <br /><small>Get Version Status</small></div>
+                    <div class="panel-heading"><b>Step 7</b> <br /><small>Get Version Status</small></div>
                     <div class="panel-body">
-                        <h3> Version Status </h3>                           
+                        <h3> Version Status </h3>
                           
                         <br />
                         <div class="alert alert-success" data-ng-if="data.version.state.completion === 100" role="alert"><b>Completed!</b></div> 
