@@ -6,7 +6,10 @@
 
     function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, Routings, RouteasySample, DeliveriesUtils, appConfig, StarredVersion, Versions) {
 
-
+        window.addEventListener("message", function(e) {
+            console.log(e);
+        }, false);
+        
         $scope.deliveries = RouteasySample.listDeliveries();
         //$scope.iframeURL = appConfig.url() + appConfig.urlIframe();
         
