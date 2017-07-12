@@ -24,7 +24,22 @@
 
                 <!--Step2-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 2</b> <br /><small>Send Deliveries</small></div>
+                    <div class="panel-heading"><b>Step 2</b> <br /><small>Create API Token</small></div>
+                    <div class="panel-body">
+                        <h3> Criar Token </h3>
+
+                        <br />
+                        <button type="button" class="btn btn-default" data-ng-click="createToken()">Create Token</button>
+                        <br /><br />
+                        <div class="alert alert-success" role="alert" data-ng-if="tokenStatus.success"><b>Token created:</b> {{ user.api_token }}</div>  
+                        <div class="alert alert-danger" role="alert" data-ng-if="tokenStatus.error"><b>There was a problem with request</b><br /> {{ tokenStatus.errorMessage }}</div>
+                        <br />      
+                    </div>
+                </div> 
+
+                <!--Step3-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Step 3</b> <br /><small>Send Deliveries</small></div>
                     <div class="panel-body">   
                         <h3> Deliveries <small><a href="javascript:;" data-ng-hide="showTable" data-ng-click="showTable = true">see deliveries </a></small></h3>
                         <div class="table-horizontal" data-ng-show="showTable">
@@ -76,9 +91,9 @@
                     </div>
                 </div> 
 
-                <!--Step3-->
+                <!--Step4-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 3</b> <br /><small>Token with iFrame</small></div>
+                    <div class="panel-heading"><b>Step 4</b> <br /><small>Token with iFrame</small></div>
                     <div class="panel-body">
                         <h3> Link </h3>
                         <div class="form-group">
@@ -93,9 +108,9 @@
                     </div>
                 </div>
             
-                <!--Step4-->
+                <!--Step5-->
                 <div class="panel panel-default" data-ng-if="showIframe">
-                    <div class="panel-heading"><b>Step 4</b> <br /><small>iFrame with Deliveries</small></div>
+                    <div class="panel-heading"><b>Step 5</b> <br /><small>iFrame with Deliveries</small></div>
                     <div class="panel-body">
                         <h3> Iframe </h3>
                     <div class="embed-responsive embed-responsive-16by9">
@@ -104,9 +119,9 @@
                     </div>
                 </div>
 
-                <!--Step5-->
+                <!--Step6-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 5</b> <br /><small>Get Routing from Token</small></div>
+                    <div class="panel-heading"><b>Step 6</b> <br /><small>Get Routing from Token</small></div>
                     <div class="panel-body">
                         <h3> Routing Object </h3>
                             <json-formatter json="data.routing" open="1" data-ng-show="data.routing"></json-formatter>
@@ -115,9 +130,9 @@
                     </div>
                 </div>
 
-                <!--Step6-->
+                <!--Step7-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 6</b> <br /><small>Get Starred Version</small></div>
+                    <div class="panel-heading"><b>Step 7</b> <br /><small>Get Starred Version</small></div>
                     <div class="panel-body">
                         <h3> Version Object </h3>                            
                             <json-formatter json="data.version" open="1" data-ng-show="data.version"></json-formatter>
@@ -126,9 +141,9 @@
                     </div>
                 </div>
                 
-                <!--Step7-->
+                <!--Step8-->
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Step 7</b> <br /><small>Get Version Status</small></div>
+                    <div class="panel-heading"><b>Step 8</b> <br /><small>Get Version Status</small></div>
                     <div class="panel-body">
                         <h3> Version Status </h3>
                           

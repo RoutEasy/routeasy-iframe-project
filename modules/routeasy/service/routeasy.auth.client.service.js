@@ -7,10 +7,17 @@
 
     function RouteasyAPI($resource, appConfig) {
         
-        return $resource(appConfig.url() + 'auth/signin', {},
+        return $resource(appConfig.url() + 'auth/signin', 
+        {
+            userId: '@_id'
+        },
         {
             login: {
                 method: 'POST'
+            },
+            createToken: {
+                method: 'POST',
+                url: appConfig.url() + 'users/security/createToken/:userId'
             }
         });
     }

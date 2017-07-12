@@ -2,9 +2,9 @@
 'use strict';
 
     angular.module('RouteasyIframe').controller('RouteasyController', RouteasyController);
-    RouteasyController.inject = ['$scope', '$sce', 'RouteasyAPIAuth', 'RouteasyAPIDelivery', 'Routings', 'RouteasySample', 'DeliveriesUtils', 'appConfig', 'StarredVersion', 'Versions'];
+    RouteasyController.inject = ['$scope', '$sce', 'RouteasyAPIAuth', 'RouteasyAPIDelivery', 'RouteasyAPIToken', 'Routings', 'RouteasySample', 'DeliveriesUtils', 'appConfig', 'StarredVersion', 'Versions'];
 
-    function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, Routings, RouteasySample, DeliveriesUtils, appConfig, StarredVersion, Versions) {
+    function RouteasyController($scope, $sce, RouteasyAPIAuth, RouteasyAPIDelivery, RouteasyAPIToken, Routings, RouteasySample, DeliveriesUtils, appConfig, StarredVersion, Versions) {
 
         window.addEventListener("message", function(e) {
             console.log(e);
@@ -25,13 +25,33 @@
         $scope.counterClockwise = '';
 
         $scope.authentication = function() {
-            RouteasyAPIAuth.login($scope.user, function(response) {                
+            RouteasyAPIAuth.login($scope.user, function(response) {  
+                $scope.user = response;              
                 $scope.loginStatus.success = true;
                 $scope.loginStatus.error = false;                
             }, function(err) {
                $scope.loginStatus.error = true;
                $scope.loginStatus.success = false;
                $scope.loginStatus.errorMessage = err.data.msg.message;
+            });
+        };
+
+        $scope.tokenStatus = {
+            error: false,
+            success: false,
+            errorMessage: ''
+        };
+
+        $scope.createToken = function() {
+            RouteasyAPIAuth.createToken($scope.user, function(response) {  
+                $scope.user.api_token = response.api_token;
+                RouteasyAPIToken.api_token = response.api_token;
+                $scope.tokenStatus.success = true;
+                $scope.tokenStatus.error = false;         
+            }, function(err) {
+                $scope.tokenStatus.error = true;
+                $scope.tokenStatus.success = false;
+                $scope.tokenStatus.errorMessage = err.data.msg.message;
             });
         };
 
@@ -48,6 +68,7 @@
                 $scope.token = response.token;
                 $scope.iframeURL = appConfig.url() + appConfig.urlIframe();
                 $scope.iframeURL = $scope.iframeURL.replace('{{TOKEN}}', response.token);
+                $scope.iframeURL = $scope.iframeURL.replace('{{API_TOKEN}}', RouteasyAPIToken.api_token);
                 $scope.iframeURL = $sce.trustAsResourceUrl($scope.iframeURL);
             }, function(err) {
                 $scope.deliveryStatus.error = true;

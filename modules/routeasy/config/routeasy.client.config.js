@@ -4,6 +4,6 @@
         .module('RouteasyIframe')
         .constant('appConfig', {
             url: function() { return 'http://iframe.routeasy.com.br/'; },
-            urlIframe: function() { return '#!/routings/create/1?token={{TOKEN}}'; }            
+            urlIframe: function() { return '#!/routings/create/1?token={{TOKEN}}&api_token={{API_TOKEN}}'; }            
         });
 })();

@@ -3,9 +3,9 @@
 
     angular.module('RouteasyIframe').factory('Routings', RouteasyAPIDelivery);
 
-    RouteasyAPIDelivery.inject = ['$resource', 'appConfig'];
+    RouteasyAPIDelivery.inject = ['$resource', 'appConfig', 'RouteasyAPIToken'];
 
-    function RouteasyAPIDelivery($resource, appConfig) {
+    function RouteasyAPIDelivery($resource, appConfig, RouteasyAPIToken) {
         
         return $resource('', { 
 
@@ -17,16 +17,29 @@
                 method: 'POST',
                 url: appConfig.url() + 'routings/group',
                 params: {
-                    token: '@token'
+                    token: '@token',
+                     api_token: function() {
+                        return RouteasyAPIToken.api_token;
+                    }
                 }
             },
             getStarredVersion: {
                 method: 'GET',
-                url: appConfig.url() + 'routings/:routingId/versions/starred'                
+                url: appConfig.url() + 'routings/:routingId/versions/starred',
+                params: {
+                    api_token: function() {
+                        return RouteasyAPIToken.api_token;
+                    }
+                }                     
             },
             getVersion: {
                 method: 'GET',
-                url: appConfig.url() + '/versions/:versionId'                
+                url: appConfig.url() + '/versions/:versionId',
+                params: {
+                    api_token: function() {
+                        return RouteasyAPIToken.api_token;
+                    }
+                }                     
             }
         });
     }
